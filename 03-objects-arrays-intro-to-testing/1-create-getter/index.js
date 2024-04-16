@@ -6,10 +6,11 @@
 export function createGetter(path) {
   const fields = path.split('.');
 
-  if (!fields.length) return;
 
   return (obj) => {
     let result = obj;
+
+    if (!fields.length) return;
 
     for (const field of fields) {
       if (result[field] === null) return null;
