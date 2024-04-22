@@ -9,23 +9,26 @@ export default class ColumnChart {
     link = '',
     formatHeading = value => value,
   } = {}) {
-    this.element = this.createElement(this.createTemplate());
-    this.data = data;
+    this.link = link;
     this.label = label;
     this.value = value;
-    this.link = link;
     this.formatHeading = formatHeading;
+    this.data = data;
+
+    this.element = this.createElement(this.createTemplate());
   }
 
   createElement(template) {
     const element = document.createElement('div');
+
     element.innerHTML = template;
+
     return element.firstElementChild;
   }
 
   createLinkTemplate() {
     if (this.link) {
-      return `<a href="${this.link}" className="column-chart__link">View all</a>`;
+      return `<a href="${this.link}" class="column-chart__link">View all</a>`;
     }
     return '';
   }
@@ -45,7 +48,7 @@ export default class ColumnChart {
   createChartBodyTemplate() {
     return this.getColumnProps().map(({value, percent}) => (
       `<div style="--value: ${value}" data-tooltip="${percent}"></div>`
-    )).join();
+    )).join('');
   }
 
   createChartClasses() {
